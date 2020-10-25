@@ -40,7 +40,7 @@ function insertRecord(req, res) {
                     employee: req.body,
                 })
             } else {
-                console.log('An Error occured during insertion.. ' + err)
+                console.log('⛔ An Error occured during insertion.. ' + err)
             }
         }
     })
@@ -62,7 +62,7 @@ function updateRecord(req, res) {
                         employee: req.body,
                     })
                 } else {
-                    console.log('An Error occured during update.. ' + err)
+                    console.log('⚠ An Error occured during update.. ' + err)
                 }
             }
         }
@@ -77,7 +77,7 @@ router.get('/list', (req, res) => {
             })
         } else {
             console.log(
-                'An Error occured during retrieving employee list ...' + err
+                '🚫 An Error occured during retrieving employee list ...' + err
             )
         }
     })
@@ -114,7 +114,7 @@ router.get('/delete/:id', (req, res) => {
         if (!err) {
             res.redirect('/employee/list')
         } else {
-            console.log('An Error occured during deleting...' + err)
+            console.log('❌ An Error occured during deleting...' + err)
         }
     })
 })

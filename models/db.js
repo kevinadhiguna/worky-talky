@@ -8,7 +8,7 @@ mongoose.connect(
 )
 
 const db = mongoose.connection
-db.on('error', (err) => console.log('An Error occured...' + err))
-db.once('open', () => console.log('Successfully connected to MongoDB!'))
+db.on('error', (err) => console.log('❌ An Error occured...' + err))
+db.once('open', () => console.log('🔌 Successfully connected to MongoDB!'))
 
 require('./employee.model')

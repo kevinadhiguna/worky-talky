@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 var employeeSchema = new mongoose.Schema({
     fullName: {
         type: String,
-        required: 'Please input your full name!',
+        required: 'May we know your name 😆 ?',
     },
     email: {
         type: String,
@@ -20,6 +20,6 @@ var employeeSchema = new mongoose.Schema({
 employeeSchema.path('email').validate((val) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return emailRegex.test(val)
-}, 'Oops.. please put a valid e-mail address!')
+}, 'Oops.. please put a valid e-mail address 📧 !')
 
 mongoose.model('Employee', employeeSchema)

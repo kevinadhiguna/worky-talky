@@ -32,7 +32,7 @@ app.set('view engine', 'hbs')
 
 const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
-    console.log('Server is running at port ' + PORT)
+    console.log('🚀 Server is running at port ' + PORT)
 })
 
 app.use('/employee', employeeController)
