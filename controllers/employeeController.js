@@ -5,6 +5,8 @@ var router = express.Router();
 
 const Employee = mongoose.model('Employee');
 
+// == CRUD Actions ===
+
 router.get('/', (req, res) => {
     res.render('employee/addOrEdit', {
         viewTitle: 'Add an Employee',
@@ -18,6 +20,44 @@ router.post('/', (req, res) => {
         updateRecord(req, res);
     }
 });
+
+router.get('/list', (req, res) => {
+    Employee.find((err, docs) => {
+        if (!err) {
+            res.render('employee/list', {
+                list: docs,
+            });
+        } else {
+            console.log(
+                '🚫 An Error occured during retrieving employee list ...' + err
+            );
+        }
+    });
+});
+
+
+router.get('/:id', (req, res) => {
+    Employee.findById(req.params.id, (err, doc) => {
+        if (!err) {
+            res.render('employee/addOrEdit', {
+                viewTitle: 'Update an Employee',
+                employee: doc,
+            });
+        }
+    });
+});
+
+router.get('/delete/:id', (req, res) => {
+    Employee.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect('/employee/list');
+        } else {
+            console.log('❌ An Error occured during deleting...' + err);
+        }
+    });
+});
+
+// == Functions ==
 
 function insertRecord(req, res) {
     var employee = new Employee();
@@ -69,20 +109,6 @@ function updateRecord(req, res) {
     );
 }
 
-router.get('/list', (req, res) => {
-    Employee.find((err, docs) => {
-        if (!err) {
-            res.render('employee/list', {
-                list: docs,
-            });
-        } else {
-            console.log(
-                '🚫 An Error occured during retrieving employee list ...' + err
-            );
-        }
-    });
-});
-
 function handleValidationError(err, body) {
     for (field in err.errors) {
         switch (err.errors[field].path) {
@@ -97,26 +123,5 @@ function handleValidationError(err, body) {
         }
     }
 }
-
-router.get('/:id', (req, res) => {
-    Employee.findById(req.params.id, (err, doc) => {
-        if (!err) {
-            res.render('employee/addOrEdit', {
-                viewTitle: 'Update an Employee',
-                employee: doc,
-            });
-        }
-    });
-});
-
-router.get('/delete/:id', (req, res) => {
-    Employee.findByIdAndRemove(req.params.id, (err, doc) => {
-        if (!err) {
-            res.redirect('/employee/list');
-        } else {
-            console.log('❌ An Error occured during deleting...' + err);
-        }
-    });
-});
 
 module.exports = router;
