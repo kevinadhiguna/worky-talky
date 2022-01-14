@@ -9,3 +9,5 @@ services:
     environment:
       DATABASE_URL: "mongodb://localhost:27017/EmployeeDB"
       PORT: 4000
+    ports:
+      - 4000:4000
