@@ -6,3 +6,6 @@ services:
       context: .
       dockerfile: dev.Dockerfile
     container_name: worky-talky_ctr
+    environment:
+      DATABASE_URL: "mongodb://localhost:27017/EmployeeDB"
+      PORT: 4000
