@@ -10,3 +10,7 @@ README.md
 
 ### Docker ###
 docker-compose.yml
+
+### Git ###
+.git
+.github
