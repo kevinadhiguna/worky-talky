@@ -7,3 +7,6 @@ node_modules
 
 ### Docs ###
 README.md
+
+### Docker ###
+docker-compose.yml
