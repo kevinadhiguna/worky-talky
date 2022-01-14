@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  worky-talky:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
